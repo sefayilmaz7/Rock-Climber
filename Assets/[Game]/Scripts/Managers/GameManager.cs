@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class GameManager : MonoBehaviour
+[DefaultExecutionOrder(-10)]
+public class GameManager : SingletonBehaviour<GameManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    public event UnityAction GameStartedEvent;
+    public event UnityAction LevelCompletedEvent;
+    public event UnityAction LevelFailedEvent;
+
+    private void Start()
     {
-        
+        LockFrameRate();
+        GameStartedEvent.Invoke();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LockFrameRate()
     {
-        
+        Application.targetFrameRate = 60;
     }
 }
