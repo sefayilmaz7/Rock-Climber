@@ -1,18 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private UIElement failedGroup;
+    [SerializeField] private UIElement completedGroup;
+
+    private void ShowFailScreen()
     {
-        
+        failedGroup.Execute();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ShowCompletedScreen()
     {
-        
+        completedGroup.Execute();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.LevelCompletedEvent += ShowCompletedScreen;
+        GameManager.Instance.LevelFailedEvent += ShowFailScreen;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.LevelCompletedEvent -= ShowCompletedScreen;
+        GameManager.Instance.LevelFailedEvent -= ShowFailScreen;
     }
 }
