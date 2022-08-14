@@ -5415,7 +5415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 4831290009756464613}
-  Speed: 8
+  MoveData: {fileID: 11400000, guid: 0a06956e0186c07459e363a4efdf1ee8, type: 2}
 --- !u!114 &4831290009756464613
 MonoBehaviour:
   m_ObjectHideFlags: 0

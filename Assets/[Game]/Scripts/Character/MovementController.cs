@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementController : MonoBehaviour , IInputListener
 {
     [SerializeField] private Ragdoll ragdoll;
-    [SerializeField] private float Speed;
+    [SerializeField] private MovementData MoveData;
     public void SendRaycast()
     {
         if (Input.GetMouseButtonDown(0))
@@ -26,7 +26,7 @@ public class MovementController : MonoBehaviour , IInputListener
             return;
         ragdoll.Open();
         ragdoll.BreakRagdoll();
-        var normalizedForce = ((rock.transform.position + Vector3.up) - ragdoll.GetForcePart().transform.position).normalized * (Speed * 100);
+        var normalizedForce = ((rock.transform.position + Vector3.up) - ragdoll.GetForcePart().transform.position).normalized * (MoveData.moveSpeed * 100);
         ragdoll.ApplyForceAllParts(normalizedForce);
     }
 
