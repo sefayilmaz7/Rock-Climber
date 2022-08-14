@@ -92,10 +92,21 @@ public class Ragdoll : MonoBehaviour
         }
     }
 
+    public void FallDown()
+    {
+        foreach (var rigidbody in Rigidbodies)
+        {
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.AddForce(Vector3.down * 5);
+        }
+    }
+
     public Rigidbody GetForcePart()
     {
         return ForcePart;
     }
+    
+    
 
 
     
