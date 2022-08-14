@@ -23,7 +23,7 @@ public class UIElement : MonoBehaviour
 
     private void Activate()
     {
-        _canvasGroup.gameObject.SetActive(true);
+        gameObject.SetActive(true);
         _canvasGroup.DOFade(1, ExecuteTime);
     }
 }

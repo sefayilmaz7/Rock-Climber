@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -12,7 +13,7 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     private void Start()
     {
-        GameStartedEvent.Invoke();
+        StartLevel();
     }
 
     private void LockFrameRate()
@@ -24,14 +25,38 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void CompleteLevel()
+    {
+        LevelCompletedEvent?.Invoke();
+    }
+
+    public void FailLevel()
+    {
+        LevelFailedEvent?.Invoke();
+    }
+
+    private void StartLevel()
+    {
+        GameStartedEvent?.Invoke();
+    }
     
     private void OnEnable()
     {
         GameStartedEvent += LockFrameRate;
+        LevelCompletedEvent += KillTweens;
+        LevelFailedEvent += KillTweens;
     }
 
     private void OnDisable()
     {
         GameStartedEvent -= LockFrameRate;
+        LevelCompletedEvent -= KillTweens;
+        LevelFailedEvent -= KillTweens;
+    }
+
+    private void KillTweens()
+    {
+        DOTween.KillAll();
     }
 }
