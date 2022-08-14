@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private UIElement failedGroup;
-    [SerializeField] private UIElement completedGroup;
+    [SerializeField] private UIElement FailedGroup;
+    [SerializeField] private UIElement CompletedGroup;
 
     private void ShowFailScreen()
     {
-        failedGroup.Execute();
+        FailedGroup.Execute();
     }
 
     private void ShowCompletedScreen()
     {
-        completedGroup.Execute();
+        CompletedGroup.Execute();
     }
 
     private void OnEnable()

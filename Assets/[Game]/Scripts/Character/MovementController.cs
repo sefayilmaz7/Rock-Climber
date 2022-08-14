@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour , IInputListener
 {
+    [SerializeField] private Ragdoll Ragdoll;
     public void SendRaycast()
     {
         if (Input.GetMouseButtonDown(0))

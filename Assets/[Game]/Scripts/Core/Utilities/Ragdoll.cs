@@ -1,22 +1,20 @@
-﻿using EasyButtons;
+﻿using System;
+using EasyButtons;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class Ragdoll : MonoBehaviour
 {
-    private Animator _animator;
-
     [SerializeField] private AwakeStatus awakeStatus; private enum AwakeStatus { OpenOnAwake, CloseOnAwake }
     [SerializeField] private Rigidbody ForcePart;
     [SerializeField] private List<Rigidbody> Rigidbodies;
     [SerializeField] private List<Collider> Colliders;
+    [SerializeField] private List<GameObject> Arms;
 
     public System.Action<bool> StatusChangedEvent;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
         if (awakeStatus == AwakeStatus.OpenOnAwake) Open(); else Close();
     }
 
@@ -33,9 +31,9 @@ public class Ragdoll : MonoBehaviour
         Colliders.AddRange(colliders);
     }
 
+    [Button("Open")]
     public void Open()
     {
-        if (_animator) _animator.enabled = false;
         if (Rigidbodies.Count == 0) return;
         Rigidbodies.ForEach(obj => obj.isKinematic = false);
         Colliders.ForEach(obj => obj.isTrigger = false);
@@ -45,7 +43,6 @@ public class Ragdoll : MonoBehaviour
 
     public void Close()
     {
-        if (_animator) _animator.enabled = true;
         if (Rigidbodies.Count == 0) return;
         Rigidbodies.ForEach(obj => obj.isKinematic = true);
         Colliders.ForEach(obj => obj.isTrigger = true);
@@ -64,4 +61,14 @@ public class Ragdoll : MonoBehaviour
         if (Rigidbodies.Count == 0) return;
         Rigidbodies.ForEach(x => x.AddForce(force, ForceMode.Force));
     }
+
+    public void ConnectRagdoll(Rigidbody connectedRigidbody)
+    {
+        foreach (var arm in Arms)
+        {
+            var joint = arm.AddComponent<ConfigurableJoint>();
+            joint.connectedBody = connectedRigidbody;
+        }
+    }
+    
 }
