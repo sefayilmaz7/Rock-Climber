@@ -7,6 +7,7 @@ using UnityEngine;
 public class Ragdoll : MonoBehaviour
 {
     [SerializeField] private AwakeStatus awakeStatus; private enum AwakeStatus { OpenOnAwake, CloseOnAwake }
+
     [SerializeField] private Rigidbody ForcePart;
     [SerializeField] private List<Rigidbody> Rigidbodies;
     [SerializeField] private List<Collider> Colliders;
@@ -89,6 +90,11 @@ public class Ragdoll : MonoBehaviour
         {
             Destroy(joint);
         }
+    }
+
+    public Rigidbody GetForcePart()
+    {
+        return ForcePart;
     }
 
 

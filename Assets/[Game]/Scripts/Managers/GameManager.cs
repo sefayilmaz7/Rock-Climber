@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-10)]
 public class GameManager : SingletonBehaviour<GameManager>
@@ -17,5 +18,10 @@ public class GameManager : SingletonBehaviour<GameManager>
     private void LockFrameRate()
     {
         Application.targetFrameRate = 60;
+    }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

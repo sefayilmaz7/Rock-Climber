@@ -26,7 +26,8 @@ public class MovementController : MonoBehaviour , IInputListener
             return;
         ragdoll.Open();
         ragdoll.BreakRagdoll();
-        ragdoll.ApplyForceAllParts((rock.transform.position - transform.position).normalized * (Speed * 100));
+        var normalizedForce = ((rock.transform.position + Vector3.up) - ragdoll.GetForcePart().transform.position).normalized * (Speed * 100);
+        ragdoll.ApplyForceAllParts(normalizedForce);
     }
 
     private void Update()
