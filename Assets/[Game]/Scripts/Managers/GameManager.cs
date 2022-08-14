@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -11,7 +12,6 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     private void Start()
     {
-        LockFrameRate();
         GameStartedEvent.Invoke();
     }
 
@@ -23,5 +23,15 @@ public class GameManager : SingletonBehaviour<GameManager>
     public void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
+    private void OnEnable()
+    {
+        GameStartedEvent += LockFrameRate;
+    }
+
+    private void OnDisable()
+    {
+        GameStartedEvent -= LockFrameRate;
     }
 }
