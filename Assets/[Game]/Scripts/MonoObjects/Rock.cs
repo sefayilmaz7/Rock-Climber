@@ -13,4 +13,20 @@ public class Rock : MonoBehaviour
             return;
         meshRenderer.material.color = ConnectedRockColor;
     }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        var ragdoll = other.GetComponentInParent<Ragdoll>();
+        if (!ragdoll)
+            return;
+
+        ragdoll.ConnectRagdoll(GetComponent<Rigidbody>());
+        ColorizeRock();
+        DisableConnectable();
+    }
+
+    private void DisableConnectable()
+    {
+        Destroy(this);
+    }
 }

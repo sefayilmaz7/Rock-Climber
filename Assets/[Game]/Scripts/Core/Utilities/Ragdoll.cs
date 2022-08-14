@@ -1,6 +1,7 @@
 ﻿using System;
 using EasyButtons;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Ragdoll : MonoBehaviour
@@ -31,7 +32,7 @@ public class Ragdoll : MonoBehaviour
         Colliders.AddRange(colliders);
     }
 
-    [Button("Open")]
+    [Button("Test Ragdoll")]
     public void Open()
     {
         if (Rigidbodies.Count == 0) return;
@@ -53,7 +54,7 @@ public class Ragdoll : MonoBehaviour
     public void ApplyForceTargetPart(Vector3 force)
     {
         if (!ForcePart) return;
-        ForcePart.AddForce(force, ForceMode.Force);
+        ForcePart.AddForce(force , ForceMode.Impulse);
     }
 
     public void ApplyForceAllParts(Vector3 force)
@@ -66,8 +67,19 @@ public class Ragdoll : MonoBehaviour
     {
         foreach (var arm in Arms)
         {
-            var joint = arm.AddComponent<ConfigurableJoint>();
+            var joint = arm.AddComponent<HingeJoint>();
             joint.connectedBody = connectedRigidbody;
+        }
+    }
+
+    public void BreakRagdoll()
+    {
+        var joints = GetComponentsInChildren<HingeJoint>();
+        if(joints.Length == 0)
+            return;
+        foreach (var joint in joints)
+        {
+            Destroy(joint);
         }
     }
     

@@ -2451,8 +2451,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.10612453
-  m_Center: {x: 0, y: 0.10612453, z: 0}
+  m_Radius: 0.27
+  m_Center: {x: 0, y: 0.22, z: 0}
 --- !u!1 &4831290009756464556
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,7 +3068,7 @@ CapsuleCollider:
   m_Radius: 0.07982919
   m_Height: 0.2660973
   m_Direction: 1
-  m_Center: {x: 0, y: 0.13304865, z: 0}
+  m_Center: {x: 0, y: 0.07, z: 0}
 --- !u!1 &4831290009756464586
 GameObject:
   m_ObjectHideFlags: 0
@@ -3198,7 +3198,7 @@ CapsuleCollider:
   m_Radius: 0.053908207
   m_Height: 0.21563283
   m_Direction: 1
-  m_Center: {x: 0, y: 0.10781641, z: 0}
+  m_Center: {x: 0, y: 0.09, z: 0}
 --- !u!1 &4831290009756464592
 GameObject:
   m_ObjectHideFlags: 0
@@ -3323,7 +3323,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4244981, y: 0.21516974, z: 0.27550638}
+  m_Size: {x: 0.3, y: 0.21516974, z: 0.27550638}
   m_Center: {x: 0.000000044703484, y: 0.10758471, z: -0.011447966}
 --- !u!1 &4831290009756464598
 GameObject:
@@ -3389,7 +3389,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4244981, y: 0.36771107, z: 0.29005677}
+  m_Size: {x: 0.3, y: 0.28, z: 0.29005677}
   m_Center: {x: 0.000000074505806, y: 0.18385553, z: -0.027108371}
 --- !u!1 &4831290009756464602
 GameObject:
@@ -3433,6 +3433,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4831290009756297660}
+  - component: {fileID: 4831290009756464613}
+  - component: {fileID: 4831290009756464612}
+  - component: {fileID: 4831290009756464611}
   m_Layer: 0
   m_Name: Stickman_01.c
   m_TagString: Untagged
@@ -3495,8 +3498,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4831290009756297662}
-  - component: {fileID: 4831290009756464611}
-  - component: {fileID: 4831290009756464612}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -3517,7 +3518,7 @@ CapsuleCollider:
   m_Radius: 0.07982923
   m_Height: 0.26609743
   m_Direction: 1
-  m_Center: {x: 0, y: 0.13304871, z: 0}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!54 &4831290009756464608
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3593,14 +3594,41 @@ CapsuleCollider:
   m_Radius: 0.05390819
   m_Height: 0.21563277
   m_Direction: 1
-  m_Center: {x: 0, y: 0.10781638, z: 0}
---- !u!114 &4831290009756464611
+  m_Center: {x: 0, y: 0.09, z: 0}
+--- !u!65 &4831290009756464611
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831290009756464604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.53, y: 0.76, z: 1.65}
+  m_Center: {x: 0, y: 0, z: 1}
+--- !u!114 &4831290009756464612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4831290009756464606}
+  m_GameObject: {fileID: 4831290009756464604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eda9426b0ca9b8341a458f91f2e2a874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 4831290009756464613}
+  Speed: 100
+--- !u!114 &4831290009756464613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831290009756464604}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f99cca370202bde47ac16a06898b56e7, type: 3}
@@ -3632,20 +3660,9 @@ MonoBehaviour:
   - {fileID: 4831290009756464575}
   - {fileID: 4831290009756464585}
   - {fileID: 4831290009756464569}
-  Arms: []
---- !u!114 &4831290009756464612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4831290009756464606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eda9426b0ca9b8341a458f91f2e2a874, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ragdoll: {fileID: 0}
+  Arms:
+  - {fileID: 4831290009756464556}
+  - {fileID: 4831290009756464554}
 --- !u!137 &4831290009761740982
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
