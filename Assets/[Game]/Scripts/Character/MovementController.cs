@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class InputListener : MonoBehaviour
+public class MovementController : MonoBehaviour , IInputListener
 {
-    protected virtual void Update()
+    public void SendRaycast()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -13,7 +10,13 @@ public abstract class InputListener : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
+                Debug.Log(hit.collider.name);
             }
         }
+    }
+
+    private void Update()
+    {
+        SendRaycast();
     }
 }
