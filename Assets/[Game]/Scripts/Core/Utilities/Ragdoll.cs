@@ -66,6 +66,7 @@ public class Ragdoll : MonoBehaviour
 
     public void ConnectRagdoll(Rigidbody connectedRigidbody)
     {
+        ResetVelocity();
         foreach (var arm in Arms)
         {
             SetHandJoints(connectedRigidbody, arm);
@@ -86,9 +87,19 @@ public class Ragdoll : MonoBehaviour
         var joints = GetComponentsInChildren<HingeJoint>();
         if(joints.Length == 0)
             return;
+
+        ResetVelocity();
         foreach (var joint in joints)
         {
             Destroy(joint);
+        }
+    }
+
+    public void ResetVelocity()
+    {
+        foreach (var rigidbody in Rigidbodies)
+        {
+            rigidbody.velocity = Vector3.zero;
         }
     }
 
