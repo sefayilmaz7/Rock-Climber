@@ -67,9 +67,17 @@ public class Ragdoll : MonoBehaviour
     {
         foreach (var arm in Arms)
         {
-            var joint = arm.AddComponent<HingeJoint>();
-            joint.connectedBody = connectedRigidbody;
+            SetHandJoints(connectedRigidbody, arm);
         }
+    }
+
+    private static void SetHandJoints(Rigidbody connectedRigidbody, GameObject arm)
+    {
+        var joint = arm.AddComponent<HingeJoint>();
+        joint.connectedBody = connectedRigidbody;
+        joint.autoConfigureConnectedAnchor = false;
+        joint.connectedAnchor = Vector3.zero;
+        joint.anchor = Vector3.zero;
     }
 
     public void BreakRagdoll()
@@ -82,5 +90,7 @@ public class Ragdoll : MonoBehaviour
             Destroy(joint);
         }
     }
+
+
     
 }
