@@ -80,6 +80,7 @@ public class Ragdoll : MonoBehaviour
         joint.autoConfigureConnectedAnchor = false;
         joint.connectedAnchor = Vector3.zero;
         joint.anchor = Vector3.zero;
+        joint.enablePreprocessing = false;
     }
 
     public void BreakRagdoll()
