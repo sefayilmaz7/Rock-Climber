@@ -1,12 +1,19 @@
 ﻿using System;
+using System.Collections;
 using EasyButtons;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class Ragdoll : MonoBehaviour
+public class Ragdoll : MonoBehaviour, ITimeManager
 {
-    [SerializeField] private AwakeStatus awakeStatus; private enum AwakeStatus { OpenOnAwake, CloseOnAwake }
+    [SerializeField] private AwakeStatus awakeStatus;
+
+    private enum AwakeStatus
+    {
+        OpenOnAwake,
+        CloseOnAwake
+    }
 
     [SerializeField] private Rigidbody ForcePart;
     [SerializeField] private List<Rigidbody> Rigidbodies;
@@ -17,7 +24,8 @@ public class Ragdoll : MonoBehaviour
 
     private void Awake()
     {
-        if (awakeStatus == AwakeStatus.OpenOnAwake) Open(); else Close();
+        if (awakeStatus == AwakeStatus.OpenOnAwake) Open();
+        else Close();
     }
 
     [Button]
@@ -55,7 +63,7 @@ public class Ragdoll : MonoBehaviour
     public void ApplyForceTargetPart(Vector3 force)
     {
         if (!ForcePart) return;
-        ForcePart.AddForce(force , ForceMode.Impulse);
+        ForcePart.AddForce(force, ForceMode.Impulse);
     }
 
     public void ApplyForceAllParts(Vector3 force)
@@ -67,15 +75,15 @@ public class Ragdoll : MonoBehaviour
     public void ConnectRagdoll(Rigidbody connectedRigidbody)
     {
         ResetVelocity();
+        StartSlowMotion();
         var rockPosX = connectedRigidbody.gameObject.transform.position.x;
         if (rockPosX > 0)
         {
-            SetHandJoints(connectedRigidbody , Arms[0]);
+            SetHandJoints(connectedRigidbody, Arms[0]);
             return;
         }
-        
+
         SetHandJoints(connectedRigidbody, Arms[1]);
-            
     }
 
     private static void SetHandJoints(Rigidbody connectedRigidbody, GameObject arm)
@@ -91,7 +99,7 @@ public class Ragdoll : MonoBehaviour
     public void BreakRagdoll()
     {
         var joints = GetComponentsInChildren<HingeJoint>();
-        if(joints.Length == 0)
+        if (joints.Length == 0)
             return;
 
         ResetVelocity();
@@ -122,9 +130,21 @@ public class Ragdoll : MonoBehaviour
     {
         return ForcePart;
     }
-    
-    
 
+    public void StartSlowMotion()
+    {
+        StartCoroutine(SlowMotionCoroutine());
+    }
 
-    
+    private IEnumerator SlowMotionCoroutine()
+    {
+        Time.timeScale = 0.3f;
+        yield return new WaitForSecondsRealtime(0.8f);
+        Time.timeScale = 1;
+    }
+}
+
+public interface ITimeManager
+{
+    void StartSlowMotion();
 }
