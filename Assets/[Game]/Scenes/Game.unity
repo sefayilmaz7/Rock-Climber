@@ -5456,6 +5456,7 @@ MonoBehaviour:
   - {fileID: 4831290009756464569}
   Arms:
   - {fileID: 4831290009756464554}
+  - {fileID: 4831290009756464556}
 --- !u!137 &4831290009761740982
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

@@ -67,10 +67,15 @@ public class Ragdoll : MonoBehaviour
     public void ConnectRagdoll(Rigidbody connectedRigidbody)
     {
         ResetVelocity();
-        foreach (var arm in Arms)
+        var rockPosX = connectedRigidbody.gameObject.transform.position.x;
+        if (rockPosX > 0)
         {
-            SetHandJoints(connectedRigidbody, arm);
+            SetHandJoints(connectedRigidbody , Arms[0]);
+            return;
         }
+        
+        SetHandJoints(connectedRigidbody, Arms[1]);
+            
     }
 
     private static void SetHandJoints(Rigidbody connectedRigidbody, GameObject arm)
