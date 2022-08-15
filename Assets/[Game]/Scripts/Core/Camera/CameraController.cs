@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -19,7 +16,7 @@ public class CameraController : MonoBehaviour
     {
         GetComponentInChildren<Skybox>().material = CameraData.skyboxMaterial;
     }
-
+    
     private void Awake()
     {
         SetSkyBox();

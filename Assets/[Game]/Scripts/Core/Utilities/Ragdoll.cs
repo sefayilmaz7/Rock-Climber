@@ -2,7 +2,6 @@
 using System.Collections;
 using EasyButtons;
 using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 
 public class Ragdoll : MonoBehaviour, ITimeManager
