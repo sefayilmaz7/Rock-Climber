@@ -6,11 +6,22 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private CameraData CameraData;
     [SerializeField] private Transform Target;
-    [SerializeField] private float CameraOffsetY = 2;
 
     private void LateUpdate()
     {
-        transform.DOMoveY(Target.position.y + CameraOffsetY, 1);
+        var ease = CameraData.cameraMoveEase;
+        transform.DOMoveY(Target.position.y + CameraData.cameraOffsetY, 1).SetEase(ease);
+    }
+
+    private void SetSkyBox()
+    {
+        GetComponentInChildren<Skybox>().material = CameraData.skyboxMaterial;
+    }
+
+    private void Awake()
+    {
+        SetSkyBox();
     }
 }

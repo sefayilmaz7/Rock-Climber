@@ -1768,6 +1768,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1792,7 +1793,7 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0.8752489, b: 1, a: 0.08627451}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1874,6 +1875,15 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!45 &963194230
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!4 &999589555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6644136280019866060, guid: ce7d54006e021c747ade9268f3fdaed7, type: 3}
@@ -2294,8 +2304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888e6c3e05bd9474fb67335d1249e275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraData: {fileID: 11400000, guid: 4fb0c2ab1f60af647b1922ea57eddfc6, type: 2}
   Target: {fileID: 4831290009756297654}
-  CameraOffsetY: 2
 --- !u!4 &1276647569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6644136280019866060, guid: ce7d54006e021c747ade9268f3fdaed7, type: 3}
